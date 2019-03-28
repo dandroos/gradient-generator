@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: whitesmoke;
+    font-family: 'product_sansregular', serif;
+}
+
+@font-face {
+    font-family: 'product_sansregular';
+    src: url('../assets/fonts/product_sans_regular-webfont.woff2') format('woff2'),
+         url('../assets/fonts/product_sans_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.bg{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: -5;
+    transition: all .5s;
+}
+
+#wrapper{
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#content{
+    text-align: right;
+    margin: 4rem;
+    transition: all .5s;
+}
+
+h1{
+    font-weight: 200;
+    font-size: 3rem;
+    text-transform: lowercase;
+    line-height: 3.5rem;
+}
+
+#instructions{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .5s;
+    min-width: 500px;
+    text-align: right;
+}
+
+table{
+    width: 100%;
+    margin: 1rem 0;
+    border-spacing: 0;
+}
+
+td, th{
+    padding: .25rem;
+    border-bottom: 1px solid black;
+}
+
+.table-left{
+    text-align: left;
+}
+
+footer{
+    margin-top: 2rem;
+    font-size: .75rem;
+}
+
+.hide{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hide-bg{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.show-bg{
+    opacity: 1;
+    visibility: visible;
+}
+
+.white-text{
+    color: white;
+}
