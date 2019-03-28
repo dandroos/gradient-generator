@@ -6,6 +6,8 @@
 body{
     background: whitesmoke;
     font-family: 'product_sansregular', serif;
+    opacity: 0;
+    transition: opacity 1s;
 }
 
 @font-face {

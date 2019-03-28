@@ -1,12 +1,12 @@
 const app = document.querySelector('#wrapper');
-const bg1 = document.querySelector('#bg1');
-const bg2 = document.querySelector('#bg2');
 const gradientText = document.querySelector('#current-gradient');
+var hiddenBg = document.querySelector('.hide-bg');
+var currentBg = document.querySelector('.show-bg');
 
 document.addEventListener('keyup', (e)=>{
    if(e.code == 'Space'){
-        var hiddenBg = document.querySelector('.hide-bg');
-        var currentBg = document.querySelector('.show-bg');
+        hiddenBg = document.querySelector('.hide-bg');
+        currentBg = document.querySelector('.show-bg');
         setGradient([currentBg, hiddenBg]);
    }
 
@@ -48,4 +48,9 @@ function setGradient(bgs){
 
 function getRandomNum(){
     return Math.floor(Math.random() * 256);
+}
+
+window.onload = ()=>{
+    setGradient([currentBg, hiddenBg]);
+    document.body.style.opacity = 1;
 }
