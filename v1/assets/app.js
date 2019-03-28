@@ -4,13 +4,13 @@ var hiddenBg = document.querySelector('.hide-bg');
 var currentBg = document.querySelector('.show-bg');
 
 document.addEventListener('keyup', (e)=>{
-   if(e.code == 'Space'){
+    if(e.code == 'Space'){
         hiddenBg = document.querySelector('.hide-bg');
         currentBg = document.querySelector('.show-bg');
         setGradient([currentBg, hiddenBg]);
-   }
+    }
 
-   if(e.code == 'KeyC'){
+    if(e.code == 'KeyC'){
         const copyElement = document.createElement('textarea');
         copyElement.value = gradientText.textContent;
         document.body.appendChild(copyElement);
@@ -30,6 +30,15 @@ document.addEventListener('keyup', (e)=>{
 
     if(e.code == 'KeyT'){
         document.body.classList.toggle('white-text');
+    }
+
+    if(e.code == 'KeyS'){
+        var regex = /rgb\(.*?\)/g
+        var currentGradient = gradientText.textContent;
+        var rgbValues = currentGradient.match(regex);
+        var newGradient = `radial-gradient(${rgbValues[1]}, ${rgbValues[0]})`;
+        hiddenBg.style.background = newGradient;
+        gradientText.textContent = newGradient;
     }
 })
 
