@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+#wrapper{
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(rgb(20, 20, 20), rgb(0, 0, 0));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#control-panel{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 4rem;
+    background: white;
+    color: black;
+    box-shadow: 0 1rem 2rem black;
+    border-radius: 10px;
+}
+
+#content{
+}
+
+#text{
+    font-size: 10rem;
+    color: white;
+    cursor: default;
+}
+
+.hide{
+    opacity: 0;
+    z-index: -1;
+}
