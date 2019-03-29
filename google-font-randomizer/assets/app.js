@@ -5,6 +5,24 @@ document.addEventListener('keypress', (e)=>{
         updateLink(array[getRandFontIndex(array.length)]);
     }
 
+    if(e.shiftKey && e.code == 'KeyT'){
+        runToast(document.querySelector('#text').style.fontFamily.replace(/"/g, ""));
+    }
+    
+    if(e.shiftKey && e.code == 'BracketRight'){
+        var text = document.querySelector('#text');
+        var size = text.style.fontSize;
+        size = parseInt(/\d*/g.exec(size).join());
+        text.style.fontSize = `${(size + 1)}px`;
+    }
+
+    if(e.shiftKey && e.code == 'BracketLeft'){
+        var text = document.querySelector('#text');
+        var size = text.style.fontSize;
+        size = parseInt(/\d*/g.exec(size).join());
+        text.style.fontSize = `${(size - 1)}px`;
+    }
+
     if(e.ctrlKey && e.shiftKey && e.code == 'KeyK'){
         var cPanel = document.querySelector('#control-panel');
         cPanel.classList.toggle('hide');
@@ -28,7 +46,7 @@ function getFonts(){
         }
     }
 
-    xhr.open("GET", "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyAZPt82j4_tyfPLEeWYVp14aXp5SM1-PME", true);
+    xhr.open("GET", "https://www.googleapis.com/webfonts/v1/webfonts?key=", true);
 
     xhr.send();
 }
@@ -62,10 +80,22 @@ function updateLink(font){
 function setTextStyle(font){
     const text = document.querySelector('#text');
     text.style.fontFamily = `'${font}'`;
+    runToast(font)
 }
 
 function getRandFontIndex(listLength){
     return Math.floor(Math.random() * listLength);
+}
+var t;
+function runToast(text){
+    // var t;
+    var toast = document.querySelector('#toast');
+    toast.textContent = text;
+    toast.classList.remove('hide');
+    window.clearTimeout(t);
+    t = window.setTimeout(()=>{
+        toast.classList.add('hide');
+    },5000);
 }
 
 getFonts();
