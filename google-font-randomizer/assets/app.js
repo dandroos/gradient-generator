@@ -3,43 +3,28 @@ var toastTimeout;
 var fontTimeout; 
 
 const text = document.querySelector('#text');
+const fontSizeInput = document.querySelector('#font-size');
+const letterSpacingInput = document.querySelector('#letter-spacing');
 
 document.addEventListener('keydown', (e)=>{
     if(e.shiftKey && e.code == 'Space'){
         text.classList.add('hide');
-        document.querySelector('#toast').classList.add('hide');
+        document.querySelector('#toast').classList.add('hide-and-slide-up');
     }
 
     if(e.shiftKey && e.code == 'KeyT'){
-        runToast(document.querySelector('#text').style.fontFamily.replace(/"/g, ""));
+        runToast(text.style.fontFamily.replace(/"/g, ""));
     }
     
-    if(e.shiftKey && e.keyCode == '38'){
-        var size = text.style.fontSize;
-        size = parseInt(/\d*/g.exec(size).join());
-        text.style.fontSize = `${size + 1}px`;
-    }
-
-    if(e.shiftKey && e.keyCode == '40'){
-        var size = text.style.fontSize;
-        size = parseInt(/\d*/g.exec(size).join());
-        text.style.fontSize = `${size - 1}px`;
-    }
-
-    if(e.shiftKey && e.keyCode == '39'){
-        var size = text.style.letterSpacing;
-        size = parseInt(/-?\d*/g.exec(size).join());
-        text.style.letterSpacing = `${size + 1}px`;
-    }
-
-    if(e.shiftKey && e.keyCode == '37'){
-        var size = text.style.letterSpacing;
-        size = parseInt(/-?\d*/g.exec(size).join());
-        text.style.letterSpacing = `${size - 1}px`;
-    }
+    if(e.shiftKey && e.keyCode == '38'){ incFontSize(); }
+    if(e.shiftKey && e.keyCode == '40'){ decFontSize(); }
+    if(e.shiftKey && e.keyCode == '39'){ incLetterSpacing(); }
+    if(e.shiftKey && e.keyCode == '37'){ decLetterSpacing(); }
 
     if(e.ctrlKey && e.shiftKey && e.code == 'KeyS'){
-        var cPanel = document.querySelector('#control-panel');
+        const cPanel = document.querySelector('#control-panel');
+        const fontSize = getFontSize();
+        setFontSize(fontSize);
         cPanel.classList.toggle('hide');
         if(cPanel.classList.contains('hide')){
             document.activeElement.blur();
@@ -78,7 +63,15 @@ text.addEventListener('transitionend', ()=>{
         text.style.letterSpacing = '0px';
         updateLink(array[getRandFontIndex(array.length)]);
     }
-})
+});
+
+fontSizeInput.addEventListener('keyup', (e)=>{
+    setFontSize(e.target.value);
+});
+
+letterSpacingInput.addEventListener('keyup', (e)=>{
+    setLetterSpacing(e.target.value);
+});
 
 function getFonts(){
     let xhr = new XMLHttpRequest();
@@ -136,11 +129,57 @@ function getRandFontIndex(listLength){
 function runToast(text){
     var toast = document.querySelector('#toast');
     toast.textContent = text;
-    toast.classList.remove('hide');
+    toast.classList.remove('hide-and-slide-up');
     window.clearTimeout(toastTimeout);
     toastTimeout = window.setTimeout(()=>{
-        toast.classList.add('hide');
+        toast.classList.add('hide-and-slide-up');
     },5000);
+}
+
+// Font size functions
+
+function incFontSize(){
+    let size = getFontSize();
+    setFontSize(size + 1);
+}
+
+function decFontSize(){
+    var size = getFontSize();
+    setFontSize(size - 1);
+}
+
+function getFontSize(){
+    let fontSize = text.style.fontSize;
+    fontSize = parseInt(/\d*/g.exec(fontSize).join());
+    return fontSize;
+}
+
+function setFontSize(size){
+    text.style.fontSize = `${size}px`;
+    fontSizeInput.value = size;
+}
+
+// Letter spacing functions
+
+function incLetterSpacing(){
+    let size = getLetterSpacing();
+    setLetterSpacing(size + 1);
+}
+
+function decLetterSpacing(){
+    var size = getLetterSpacing();
+    setLetterSpacing(size - 1);
+}
+
+function getLetterSpacing(){
+    let letterSpacing = text.style.letterSpacing;
+    letterSpacing = parseInt(/-?\d*/g.exec(letterSpacing).join());
+    return letterSpacing;
+}
+
+function setLetterSpacing(size){
+    text.style.letterSpacing = `${size}px`;
+    letterSpacingInput.value = size;
 }
 
 getFonts();

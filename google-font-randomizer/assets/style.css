@@ -11,6 +11,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 #control-panel{
@@ -30,7 +31,7 @@ body{
     position: absolute;
     top: 10%;
     right: 50%;
-    transform: translate(50%, 50%);
+    transform: translate(50%, 0%);
     transition: all .25s;
     z-index: 100;
     border: 2px solid white;
@@ -49,4 +50,10 @@ body{
 .hide{
     opacity: 0;
     z-index: -1;
+}
+
+.hide-and-slide-up{
+    opacity: 0;
+    z-index: -1;
+    margin-top: -5rem;
 }
