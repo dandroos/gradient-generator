@@ -31,7 +31,7 @@ body{
     top: 10%;
     right: 50%;
     transform: translate(50%, 50%);
-    transition: all 1s;
+    transition: all .25s;
     z-index: 100;
     border: 2px solid white;
     padding:1rem;
@@ -43,6 +43,7 @@ body{
 #text{
     color: white;
     cursor: default;
+    transition: opacity .25s;
 }
 
 .hide{
