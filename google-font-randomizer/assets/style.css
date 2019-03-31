@@ -25,6 +25,7 @@ body{
     color: black;
     box-shadow: 0 1rem 2rem black;
     border-radius: 10px;
+    z-index: 100;
 }
 
 #toast{
@@ -45,6 +46,13 @@ body{
     color: white;
     cursor: default;
     transition: opacity .25s;
+}
+
+#none-selected{
+    position: absolute;
+    right: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
 }
 
 .hide{

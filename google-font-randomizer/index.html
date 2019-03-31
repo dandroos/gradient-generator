@@ -24,21 +24,22 @@
         </div>
         <div class="input-group">
             <label for="serif">Serif</label>
-            <input type="checkbox" id="serif">
+            <input type="checkbox" id="serif" class="category" checked>
             <label for="sans-serif">Sans Serif</label>
-            <input type="checkbox" id="sans-serif">
+            <input type="checkbox" id="sans-serif" class="category" checked>
             <label for="display">Display</label>
-            <input type="checkbox" id="display">
+            <input type="checkbox" id="display" class="category" checked>
             <label for="handwriting">Handwriting</label>
-            <input type="checkbox" id="handwriting">
+            <input type="checkbox" id="handwriting" class="category" checked>
             <label for="monospaced">Monospaced</label>
-            <input type="checkbox" id="monospaced">
+            <input type="checkbox" id="monospace" class="category" checked>
         </div>
 
     </div>
     <span id="toast" class="hide-and-slide-up"></span>
     <div id="wrapper">
         <div id="content">
+            <span id="none-selected" class="hide">Please select at least one category</span>
             <span id="text" class="hide" style="font-size: 100px; letter-spacing: 0px;">Hello World!</span>
         </div>
     </div>
