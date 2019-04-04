@@ -2,6 +2,16 @@ body{
     margin: 0;
     box-sizing: border-box;
     color: white;
+    font-family: 'product_sansregular', serif;
+    font-size: 15px;
+}
+
+@font-face {
+    font-family: 'product_sansregular';
+    src: url('../assets/fonts/product_sans_regular-webfont.woff2') format('woff2'),
+         url('../assets/fonts/product_sans_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 #wrapper{
@@ -14,7 +24,7 @@ body{
     text-align: center;
 }
 
-#control-panel{
+#cpanel{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -26,6 +36,26 @@ body{
     box-shadow: 0 1rem 2rem black;
     border-radius: 10px;
     z-index: 100;
+}
+
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 1rem;
+}
+
+.input-group label{
+    text-align: left;
+}
+
+.input-group input[type="text"],
+.input-group input[type="number"]{
+    font-family: 'product_sansregular', serif;
+    text-align: right;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid;
 }
 
 #toast{
