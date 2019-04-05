@@ -1,10 +1,18 @@
 export default class Font {
     constructor(){
+        this.text = document.querySelector('#text');
         this.cpanel = document.querySelector('#cpanel');
         this.textInput = document.querySelector('#text-input');
         this.sizeInput = document.querySelector('#size-input');
         this.letterSpacingInput = document.querySelector('#space-input');
         this.categoriesInput = document.querySelectorAll('.category');
+        this.wrapper = document.querySelector('#wrapper');
+        this.toastBox = document.querySelector('#toast')
+        this.caseOptions = document.querySelectorAll('.case');
+        this.colourScheme = document.querySelectorAll('.colourscheme');
+        this.getNewFontButton = document.querySelector('#new');
+        this.undoButton = document.querySelector('#undo');
+        this.redoButton = document.querySelector('#redo');
     }
 
     getFontList(){
@@ -12,7 +20,6 @@ export default class Font {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = () => {
                 if (xhr.status == 200 && xhr.readyState == 4) {
-                    // this._init(JSON.parse(xhr.responseText));
                     resolve(JSON.parse(xhr.responseText))
                 }else if(xhr.status != 200 && xhr.readyState == 4){
                     reject(xhr.responseText);
@@ -24,7 +31,7 @@ export default class Font {
     }
 
     init(json){
-        return new Promise((resolve, reject)=>{
+        return new Promise((resolve)=>{
             this.jsonData = json.items;
             var link = document.createElement('link');
             link.id = 'googleFont';
@@ -75,11 +82,11 @@ export default class Font {
     }
 
     getText(){
-        return document.querySelector('#text').textContent;
+        return this.text.textContent;
     }
     
     setText(text){
-        document.querySelector('#text').textContent = text;
+        this.text.textContent = text;
     }
     
     getSelectedCategories(){
@@ -104,24 +111,23 @@ export default class Font {
     }
     
     setInlineStyle(font){
-        document.querySelector('#text').style.fontFamily = font.family;
+        this.text.style.fontFamily = font.family;
     }
 
     getToast(){
-        return this.text;
+        return this.toastText;
     }
 
     setToast(text){
-        this.text = text;
+        this.toastText = text;
     }
 
     toast(){
-        var toast = document.querySelector('#toast')
-        toast.textContent = this.text;
-        toast.classList.remove('hide-and-slide-up');
+        this.toastBox.textContent = this.toastText;
+        this.toastBox.classList.remove('hide-and-slide-up');
         window.clearTimeout(this.timer);
         this.timer = setTimeout(()=>{
-            toast.classList.add('hide-and-slide-up');
+            this.toastBox.classList.add('hide-and-slide-up');
         }, 4000);
     }
 
@@ -143,7 +149,7 @@ export default class Font {
         }else{
             element.style.letterSpacing = `${this.getSpace(element) + value}px`
         }
-        document.querySelector('#space-input').value = this.getSpace(element);
+        this.letterSpacingInput.value = this.getSpace(element);
     }
 
     getSize(element){
@@ -156,7 +162,7 @@ export default class Font {
         }else{
             element.style.fontSize = `${this.getSize(element) + value}px`;
         }
-        document.querySelector('#size-input').value = this.getSize(element);
+        this.sizeInput.value = this.getSize(element);
     }
 
     resetValues(element, start=false){
@@ -171,6 +177,7 @@ export default class Font {
     }
 
     setCase(element, value){
+        document.querySelector(`#${value}`).checked = true;
         element.style.textTransform = value;
     }
 
@@ -195,5 +202,21 @@ export default class Font {
         if(this.cpanel.classList.contains('hide')){
             document.activeElement.blur();
         }
+    }
+
+    setColourScheme(element, on){
+        if(on){
+            element.classList.add('black-on-white');
+            document.querySelector('#bow').checked = true;
+        }else{
+            element.classList.remove('black-on-white');
+            document.querySelector('#wob').checked = true;
+        }
+    }
+
+    toggleWhiteOnBlack(){
+        var isOff = this.wrapper.classList.contains('black-on-white');
+        this.setColourScheme(this.wrapper, !isOff);
+        this.setColourScheme(this.toastBox, !isOff);
     }
 }

@@ -1,9 +1,8 @@
 body{
     margin: 0;
     box-sizing: border-box;
-    color: white;
-    font-family: 'product_sansregular', serif;
     font-size: 15px;
+    cursor: default;
 }
 
 @font-face {
@@ -17,7 +16,6 @@ body{
 #wrapper{
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(rgb(20, 20, 20), rgb(0, 0, 0));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,23 +23,33 @@ body{
 }
 
 #cpanel{
+    width: 75%;
+    max-width: 750px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: 'product_sansregular', serif;
     text-align: center;
     padding: 4rem;
-    background: white;
+    background: rgba(255, 255, 255, .95);
     color: black;
     box-shadow: 0 1rem 2rem black;
     border-radius: 10px;
     z-index: 100;
 }
 
-.input-group {
+.input-group-1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    padding: 1rem;
+}
+
+.input-group-2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
     padding: 1rem;
 }
 
@@ -65,15 +73,15 @@ body{
     transform: translate(50%, 0%);
     transition: all .25s;
     z-index: 100;
-    border: 2px solid white;
+    border: 2px solid;
     padding:1rem;
     border-radius: 5px;
 }
 #content{
+
 }
 
 #text{
-    color: white;
     cursor: default;
     transition: opacity .25s;
 }
@@ -87,11 +95,21 @@ body{
 
 .hide{
     opacity: 0;
-    z-index: -1;
+    z-index: -100 !important;
 }
 
 .hide-and-slide-up{
     opacity: 0;
     z-index: -1;
     margin-top: -5rem;
+}
+
+.black-on-white{
+    color: black !important;
+    background: radial-gradient(rgb(235, 235, 235), rgb(255, 255, 255)) !important;
+}
+
+.white-on-black{
+    color: white;
+    background: radial-gradient(rgb(20, 20, 20), rgb(0, 0, 0));
 }
