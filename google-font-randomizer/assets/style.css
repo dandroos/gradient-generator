@@ -37,6 +37,7 @@ body{
     box-shadow: 0 1rem 2rem black;
     border-radius: 10px;
     z-index: 100;
+    transition: all 1s;
 }
 
 .input-group-1 {
